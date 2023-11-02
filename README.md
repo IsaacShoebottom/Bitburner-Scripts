@@ -1,17 +1,13 @@
-# bb-external-editor
+# My Bitburner Scripts
 
-This is a template for using any external editor for Bitburner. This Template supports JSX, TS and TSX out of the box.
+My remote editor config is based on [this template](https://github.com/NilsRamstoeck/bb-external-editor/)
 
 ## How to use
-
-1. If you dont already have it installed, install [NodeJS](https://nodejs.org)
-1. Clone this repository
-1. navigate to the template (`cd path/to/the/template`) inside your console
 1. run `npm install` in your console to install all dependencies
-1. run `npm start` in your console to start the RemoteAPI server
-1. open Bitburner and navigate to the settings
-1. open the tab labeled 'Remote API' and enter the port '12525'
-1. press connect
+2. run `npm start` in your console to start the RemoteAPI server
+3. open Bitburner and navigate to the settings
+4. open the tab labeled 'Remote API' and enter the port '12525'
+5. press connect
 
 Now any changes made to scripts inside the server folders will automatically be uploaded to Bitburner.
 
