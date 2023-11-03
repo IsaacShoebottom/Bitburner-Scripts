@@ -1,5 +1,10 @@
 // noinspection JSUnusedGlobalSymbols
 
+/**
+ * @file Utility functions for Bitburner
+ * @note Some functions are currently untested
+ */
+
 import {NS} from "NetscriptDefinitions";
 
 /**
@@ -108,4 +113,21 @@ export function performFunctionIfCapable(ns: NS, server: string, func: CallableF
     } else {
         return result;
     }
+}
+
+/**
+ * Executes a script on a server from another server
+ * @param ns Global NS object
+ * @param script The file path of the script to execute
+ * @param args The arguments to pass to the script
+ * @param server The server to execute the script on
+ */
+export function executeScriptOnServerFromAnother(ns: NS, script: string, args: any[], server: string) {
+    ns.scp(script, server);
+    performFunctionIfCapable(ns, server, ns.exec, [script, server, ...args])
+    ns.atExit(
+        () => {
+            ns.rm(script, server);
+        }
+    )
 }
