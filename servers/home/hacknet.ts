@@ -1,5 +1,20 @@
 import {NS} from "NetscriptDefinitions";
 
+/*
+ * TODO:
+ *  The current solution is not optimal, as it's preferable to buy new nodes, even if upgrading is cheaper.
+ * TODO:
+ *  It may be helpful to calculate the money per second of each node on average, (total mps / total nodes) and compare
+ *  it to the time it would take to purchase the next cheapest upgrade, and if the average mps is greater than the
+ *  negative mps of the upgrade cost, then buy a new node.
+ * TODO:
+ *  Potential Ideas:
+ *   Find a way to calculate how much mps an individual upgrade would give, and compare it to the average mps of the node.
+ *   ns.hacknet.getNodeStats(0).production
+ *   If the upgrade mps is greater than the average mps, then buy the upgrade.
+ *   If the upgrade mps is less than the average mps, then buy a new node.
+ */
+
 enum Type {
 	newNode = "node",
 	level = "level",
