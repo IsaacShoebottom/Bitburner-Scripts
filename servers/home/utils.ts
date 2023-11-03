@@ -118,11 +118,11 @@ export function performFunctionIfCapable(ns: NS, server: string, func: CallableF
 /**
  * Executes a script on a server from another server
  * @param ns Global NS object
+ * @param server The server to execute the script on
  * @param script The file path of the script to execute
  * @param args The arguments to pass to the script
- * @param server The server to execute the script on
  */
-export function executeScriptOnServerFromAnother(ns: NS, script: string, args: any[], server: string) {
+export function executeScriptOnServerFromAnother(ns: NS, server: string, script: string, args: any[]) {
     ns.scp(script, server);
     performFunctionIfCapable(ns, server, ns.exec, [script, server, ...args])
     ns.atExit(
