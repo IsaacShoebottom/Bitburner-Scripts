@@ -9,6 +9,7 @@ export async function main(ns: NS) {
 		let moneyThresh = ns.getServerMaxMoney(server) * 0.75;
 		let securityThresh = ns.getServerMinSecurityLevel(server) + 5;
 		let numThreads = ns.getServerMaxRam(server) / ns.getScriptRam("hack.js")
+		numThreads = Math.floor(numThreads);
 		executeScriptOnServerFromAnother(ns, server, "hack.js", numThreads, [server, moneyThresh, securityThresh])
 	}
 }
