@@ -2,10 +2,6 @@ import {NS} from "NetscriptDefinitions";
 export async function main(ns: NS) {
 	let hackingLevel = ns.getHackingLevel();
 	while (hackingLevel < 9999) {
-		ns.run("hackallservers.js");
-		let seconds = 60 * 1000; // 1 minute
-		await ns.sleep(seconds)
-
 		let oldHackingLevel = hackingLevel;
 		hackingLevel = ns.getHackingLevel();
 		if(oldHackingLevel !== hackingLevel) {
@@ -14,5 +10,7 @@ export async function main(ns: NS) {
 			await ns.sleep(1000) // 1 second
 			ns.run("hackallservers.js");
 		}
+		// Wait 1 second before checking again
+		await ns.sleep(1000)
 	}
 }
