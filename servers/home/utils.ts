@@ -75,7 +75,9 @@ export function rootServer(ns: NS, server: string) {
 		ns.sqlinject(server)
 		counter++
 	}
-	ns.nuke(server)
+	if (ns.getServer(server).openPortCount <= counter) {
+		ns.nuke(server)
+	}
 	return counter
 }
 
@@ -88,17 +90,21 @@ export function rootServer(ns: NS, server: string) {
  * @returns The result of the function if it is performed or true if the function does not return anything, otherwise false
  */
 export function performFunctionIfCapable(ns: NS, server: string, func: CallableFunction, args: any[]) {
+	ns.print(`Performing function on ${server}`)
 	if (ns.getHackingLevel() < ns.getServerRequiredHackingLevel(server)) {
+		ns.print(`Not enough hacking level to hack ${server}`)
 		return false
 	}
 	if (ns.getServerNumPortsRequired(server) < ns.getServer(server).openPortCount) {
+		ns.print(`Not enough ports, trying to root ${server}`)
 		if (rootServer(ns, server) < ns.getServerNumPortsRequired(server)) {
+			ns.print(`Need more port opening programs to root ${server}`)
 			return false
 		}
 	}
 	if (!ns.hasRootAccess(server)) {
+		ns.print(`Failed to root ${server}`)
 		return false
-
 	}
 	let result = func(...args)
 	if (result === undefined) {

@@ -21,6 +21,12 @@ export async function main(ns: NS) {
 	let timeout: number = <number> ns.args[0]
 
 	let nodes = ns.hacknet.numNodes()
+	// If there are no nodes, buy one
+	if (nodes === 0) {
+		ns.hacknet.purchaseNode()
+		nodes = 1
+	}
+
 	let costs: { type: Type, cost: number }[] = []
 	while (true) {
 		costs = []
