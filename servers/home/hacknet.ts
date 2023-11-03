@@ -14,17 +14,14 @@
  */
 
 enum Type {
-	newNode = "node",
-	level = "level",
-	ram = "ram",
-	core = "code"
+	newNode = 'node', level = 'level', ram = 'ram', core = 'code',
 }
 
 export async function main(ns: NS) {
-	let timeout: number = <number>ns.args[0]
+	let timeout: number = <number> ns.args[0]
 
 	let nodes = ns.hacknet.numNodes()
-	let costs: {type: Type, cost: number}[] = []
+	let costs: { type: Type, cost: number }[] = []
 	while (true) {
 		costs = []
 		// Go through each node and get the cheapest upgrade
@@ -56,12 +53,12 @@ export async function main(ns: NS) {
  * @note This function will wait forever by default
  */
 async function waitUntilMoney(ns: NS, money: number, timeout: number = -1) {
-	while (ns.getServerMoneyAvailable("home") < money) {
+	while (ns.getServerMoneyAvailable('home') < money) {
 		await ns.sleep(1000)
 		if (timeout == 0) {
-			throw new Error("Timed out waiting for money")
+			throw new Error('Timed out waiting for money')
 		} else if (timeout > -1) {
-			timeout--;
+			timeout--
 		}
 	}
 }
@@ -92,12 +89,12 @@ function getCheapestCost(ns: NS, node: number) {
 	let cheapest = Math.min(nodeCost, levelCost, ramCost, coreCost)
 	switch (cheapest) {
 		case nodeCost:
-			return {type: Type.newNode, cost: nodeCost}
+			return { type: Type.newNode, cost: nodeCost }
 		case levelCost:
-			return {type: Type.level, cost: levelCost}
+			return { type: Type.level, cost: levelCost }
 		case ramCost:
-			return {type: Type.ram, cost: ramCost}
+			return { type: Type.ram, cost: ramCost }
 		case coreCost:
-			return {type: Type.core, cost: coreCost}
+			return { type: Type.core, cost: coreCost }
 	}
 }

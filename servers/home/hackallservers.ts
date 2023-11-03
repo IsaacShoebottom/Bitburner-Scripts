@@ -1,15 +1,11 @@
-import {recursiveScan} from "./utils";
-import {executeScriptOnServerFromAnother} from "./utils";
+import { executeScriptOnServerFromAnother, recursiveScan } from './utils'
+
 export async function main(ns: NS) {
-	let servers: string[] = recursiveScan(ns);
+	let servers: string[] = recursiveScan(ns)
 
 	for (const server of servers) {
-		// Commented out code is not needed with smart scheduling
-		//let moneyThresh = ns.getServerMaxMoney(server) * 0.75;
-		//let securityThresh = ns.getServerMinSecurityLevel(server) + 5;
-		let numThreads = ns.getServerMaxRam(server) / ns.getScriptRam("hack.js")
-		numThreads = Math.floor(numThreads);
-		//executeScriptOnServerFromAnother(ns, server, "hack.js", numThreads, [server, moneyThresh, securityThresh])
-		executeScriptOnServerFromAnother(ns, server, "hack.js", numThreads, [server])
+		let numThreads = ns.getServerMaxRam(server) / ns.getScriptRam('hack.js')
+		numThreads = Math.floor(numThreads)
+		executeScriptOnServerFromAnother(ns, server, 'hack.js', numThreads, [server])
 	}
 }
