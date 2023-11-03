@@ -120,11 +120,12 @@ export function performFunctionIfCapable(ns: NS, server: string, func: CallableF
  * @param ns Global NS object
  * @param server The server to execute the script on
  * @param script The file path of the script to execute
+ * @param threads The number of threads to use
  * @param args The arguments to pass to the script
  */
-export function executeScriptOnServerFromAnother(ns: NS, server: string, script: string, args: any[]) {
+export function executeScriptOnServerFromAnother(ns: NS, server: string, script: string, threads: number = 1, args: any[]) {
     ns.scp(script, server);
-    performFunctionIfCapable(ns, server, ns.exec, [script, server, ...args])
+    performFunctionIfCapable(ns, server, ns.exec, [script, server, threads, ...args])
     ns.atExit(
         () => {
             ns.rm(script, server);
