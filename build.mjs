@@ -13,7 +13,11 @@ const createContext = async () => await context({
   plugins: [
     BitburnerPlugin({
       port: 12525,
-      types: 'NetscriptDefinitions.d.ts'
+      types: 'NetscriptDefinitions.d.ts',
+      // mirror: { //uncomment to enable file mirroring
+      //   'mirror/own': ['home'],
+      //   'mirror/other': ['n00dles']
+      // }
     })
   ],
   bundle: true,
