@@ -132,3 +132,18 @@ export function executeScriptOnServerFromAnother(ns: NS, server: string, script:
         }
     )
 }
+
+/**
+ * Calculates the money per second the player is making
+ * @param ns Global NS object
+ * @param time=5 The number of seconds to calculate the MPS over
+ */
+export async function calculateMPS(ns: NS, time: number = 5) {
+    let start = ns.getServerMoneyAvailable("home");
+    let data: number[] = [];
+    for (let i = 0; i < time; i++) {
+        await ns.sleep(1000);
+        data.push(ns.getServerMoneyAvailable("home") - start);
+    }
+    return data.reduce((a, b) => a + b, 0) / time;
+}
