@@ -1,5 +1,3 @@
-import {NS} from "NetscriptDefinitions";
-
 /*
  * TODO:
  *  The current solution is not optimal, as it's preferable to buy new nodes, even if upgrading is cheaper.

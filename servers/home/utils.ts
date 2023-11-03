@@ -1,12 +1,4 @@
 // noinspection JSUnusedGlobalSymbols
-
-/**
- * @file Utility functions for Bitburner
- * @note Some functions are currently untested
- */
-
-import {NS} from "NetscriptDefinitions";
-
 /**
  * Recursively scans all servers connected to the current server, excluding home
  * @param ns global NS object

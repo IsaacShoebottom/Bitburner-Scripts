@@ -1,4 +1,3 @@
-import {NS} from "NetscriptDefinitions";
 export async function main(ns: NS) {
 	let hackingLevel = ns.getHackingLevel();
 	while (hackingLevel < 9999) {
