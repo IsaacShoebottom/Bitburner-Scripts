@@ -110,12 +110,12 @@ export function performFunctionIfCapable(ns: NS, server: string, func: CallableF
 		ns.print(`Not enough hacking level to hack ${server}`)
 		return false
 	}
-	if (ns.getServerNumPortsRequired(server) < ns.getServer(server).openPortCount) {
+	if (ns.getServer(server).openPortCount < ns.getServerNumPortsRequired(server)) {
 		ns.print(`Not enough ports, trying to root ${server}`)
-	}
-	if (rootServer(ns, server) < ns.getServerNumPortsRequired(server)) {
-		ns.print(`Need more port opening programs to root ${server}`)
-		return false
+		if (rootServer(ns, server) < ns.getServerNumPortsRequired(server)) {
+			ns.print(`Failed to root ${server}`)
+			return false
+		}
 	}
 	if (!ns.hasRootAccess(server)) {
 		ns.print(`Failed to root ${server}`)
