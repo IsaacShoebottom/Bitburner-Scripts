@@ -15,5 +15,5 @@ export async function main(ns: NS) {
 		}
 		// Wait 1 second before checking again
 		await ns.sleep(1000)
-	} while (hackingLevel < 9999)
+	} while (hackingLevel <= Math.max(...levels))
 }
