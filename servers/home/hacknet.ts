@@ -14,7 +14,7 @@
  */
 
 enum Type {
-	newNode = 'node', level = 'level', ram = 'ram', core = 'code',
+	newNode = "node", level = "level", ram = "ram", core = "code",
 }
 
 export async function main(ns: NS) {
@@ -59,10 +59,10 @@ export async function main(ns: NS) {
  * @note This function will wait forever by default
  */
 async function waitUntilMoney(ns: NS, money: number, timeout: number = -1) {
-	while (ns.getServerMoneyAvailable('home') < money) {
+	while (ns.getServerMoneyAvailable("home") < money) {
 		await ns.sleep(1000)
 		if (timeout == 0) {
-			throw new Error('Timed out waiting for money')
+			throw new Error("Timed out waiting for money")
 		} else if (timeout > -1) {
 			timeout--
 		}

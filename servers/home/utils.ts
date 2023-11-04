@@ -7,7 +7,7 @@
  */
 export function recursiveScan(ns: NS) {
 	// Starting case
-	let servers = ns.scan('home')
+	let servers = ns.scan("home")
 	// Add all servers to the list
 	let allServers: string[] = []
 	while (servers.length > 0) {
@@ -23,7 +23,7 @@ export function recursiveScan(ns: NS) {
 		}
 	}
 	// Remove the current server
-	allServers.splice(allServers.indexOf('home'), 1)
+	allServers.splice(allServers.indexOf("home"), 1)
 	// Print all servers
 	return allServers
 }
@@ -70,23 +70,23 @@ export function removeFilesOnAllServers(ns: NS, files: string[]) {
  */
 export function rootServer(ns: NS, server: string) {
 	let counter = 0
-	if (ns.fileExists('BruteSSH.exe', 'home')) {
+	if (ns.fileExists("BruteSSH.exe", "home")) {
 		ns.brutessh(server)
 		counter++
 	}
-	if (ns.fileExists('FTPCrack.exe', 'home')) {
+	if (ns.fileExists("FTPCrack.exe", "home")) {
 		ns.ftpcrack(server)
 		counter++
 	}
-	if (ns.fileExists('SMTPCrack.exe', 'home')) {
+	if (ns.fileExists("SMTPCrack.exe", "home")) {
 		ns.relaysmtp(server)
 		counter++
 	}
-	if (ns.fileExists('HTTPWorm.exe', 'home')) {
+	if (ns.fileExists("HTTPWorm.exe", "home")) {
 		ns.httpworm(server)
 		counter++
 	}
-	if (ns.fileExists('SQLInject.exe', 'home')) {
+	if (ns.fileExists("SQLInject.exe", "home")) {
 		ns.sqlinject(server)
 		counter++
 	}
@@ -151,11 +151,11 @@ export function executeScriptOnServerFromAnother(ns: NS, server: string, script:
  * @param time=5 The number of seconds to calculate the MPS over
  */
 export async function calculateMPS(ns: NS, time: number = 5) {
-	let start = ns.getServerMoneyAvailable('home')
+	let start = ns.getServerMoneyAvailable("home")
 	let data: number[] = []
 	for (let i = 0; i < time; i++) {
 		await ns.sleep(1000)
-		data.push(ns.getServerMoneyAvailable('home') - start)
+		data.push(ns.getServerMoneyAvailable("home") - start)
 	}
 	return data.reduce((a, b) => a + b, 0) / time
 }
