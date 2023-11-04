@@ -117,10 +117,6 @@ export function performFunctionIfCapable(ns: NS, server: string, func: CallableF
 			return false
 		}
 	}
-	if (!ns.hasRootAccess(server)) {
-		ns.print(`Failed to root ${server}`)
-		return false
-	}
 	let result = func(...args)
 	if (result === undefined) {
 		return true
