@@ -29,6 +29,21 @@ export function recursiveScan(ns: NS) {
 }
 
 /**
+ * Recursively scans all servers connected to the current server for the set of all levels that hackable servers require
+ * @param ns
+ * @returns A set of every hacking level required to hack a new server
+ */
+export function recursiveHackingRequired(ns: NS) {
+	let servers = recursiveScan(ns)
+	let levels: number[] = []
+	for (let server of servers) {
+		levels.push(ns.getServerRequiredHackingLevel(server))
+	}
+	// remove duplicates
+	return [...new Set(levels)]
+}
+
+/**
  * Removes files passed in from all servers
  * @param ns Global NS object
  * @param files The files to remove
