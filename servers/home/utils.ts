@@ -90,7 +90,7 @@ export function rootServer(ns: NS, server: string) {
 		ns.sqlinject(server)
 		counter++
 	}
-	if (counter <= ns.getServerNumPortsRequired(server)) {
+	if (counter >= ns.getServerNumPortsRequired(server)) {
 		ns.nuke(server)
 	}
 	return counter
