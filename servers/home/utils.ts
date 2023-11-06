@@ -39,8 +39,8 @@ export function recursiveHackingRequired(ns: NS) {
 	for (let server of servers) {
 		levels.push(ns.getServerRequiredHackingLevel(server))
 	}
-	// remove duplicates
-	return [...new Set(levels)].sort()
+	// Sort and remove duplicates, need custom sort because built-in sort only works alphabetically 💀
+	return [...new Set(levels)].sort((a, b) => a - b)
 }
 
 /**
