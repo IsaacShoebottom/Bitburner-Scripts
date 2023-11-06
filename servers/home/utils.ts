@@ -25,7 +25,7 @@ export function recursiveScan(ns: NS) {
 	// Remove the current server
 	allServers.splice(allServers.indexOf("home"), 1)
 	// Print all servers
-	return allServers
+	return allServers.sort()
 }
 
 /**
@@ -40,7 +40,7 @@ export function recursiveHackingRequired(ns: NS) {
 		levels.push(ns.getServerRequiredHackingLevel(server))
 	}
 	// remove duplicates
-	return [...new Set(levels)]
+	return [...new Set(levels)].sort()
 }
 
 /**
