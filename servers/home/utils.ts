@@ -23,9 +23,7 @@ export function recursiveScan(ns: NS) {
 		}
 	}
 	// Remove the current server
-	allServers.splice(allServers.indexOf("home"), 1)
-	// Print all servers
-	return allServers.sort()
+	return allServers.splice(allServers.indexOf("home"), 1)
 }
 
 /**
