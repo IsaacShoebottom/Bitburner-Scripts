@@ -16,11 +16,19 @@ export async function main(ns: NS) {
 	levels = levels.filter(level => level > hackingLevel)
 
 	do {
-		if (Math.min(...levels) <= hackingLevel || checkForNewPrograms(ns, state)) {
+		let restart = false
+		if (Math.min(...levels) <= hackingLevel) {
 			ns.tprint(`Hacking level increased past ${Math.min(...levels)}}, is now ${hackingLevel}`)
 			ns.tprint(`Remaining levels to hack: ${levels}`)
 			// remove the level from the list, so we don't try to hack it again
 			levels = levels.filter(level => level > hackingLevel)
+			restart = true
+		}
+		if (checkForNewPrograms(ns, state)) {
+			ns.tprint(`New programs found: ${state.filter(program => program.exists).map(program => program.program)}`)
+			restart = true
+		}
+		if (restart) {
 			ns.run("killall.js")
 			await ns.sleep(1000) // 1 second
 			ns.run("hackallservers.js")
