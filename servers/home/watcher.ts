@@ -11,6 +11,7 @@ export async function main(ns: NS) {
 		{ program: "HTTPWorm.exe", exists: false },
 		{ program: "SQLInject.exe", exists: false },
 	]
+	checkForNewPrograms(ns, state)
 
 	// Remove levels that are already hacked
 	levels = levels.filter(level => level > hackingLevel)
