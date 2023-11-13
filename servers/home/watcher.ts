@@ -7,7 +7,7 @@ export async function main(ns: NS) {
 	levels = levels.filter(level => level > hackingLevel)
 
 	do {
-		if (levels.includes(hackingLevel)) {
+		if (Math.min(...levels) <= hackingLevel) {
 			// remove the level from the list, so we don't try to hack it again
 			levels.splice(levels.indexOf(hackingLevel), 1)
 			ns.tprint(`Hacking level increased to ${hackingLevel}`)
