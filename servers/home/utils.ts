@@ -11,10 +11,10 @@ export function recursiveScan(ns: NS) {
 	// Add all servers to the list
 	let allServers: string[] = []
 	while (servers.length > 0) {
-		let server = servers.shift()
+		let server = servers.pop()
 		if (server) {
 			let newServers = ns.scan(server)
-			for (let newServer of newServers) {
+			for (const newServer of newServers) {
 				if (!allServers.includes(newServer)) {
 					allServers.push(newServer)
 					servers.push(newServer)
@@ -23,7 +23,7 @@ export function recursiveScan(ns: NS) {
 		}
 	}
 	// Remove the home server from the list
-	return allServers.splice(allServers.indexOf("home"), 1).sort()
+	return allServers.filter(server => server !== "home").sort()
 }
 
 /**
