@@ -154,3 +154,30 @@ export async function calculateMPS(ns: NS, time: number = 5) {
 	}
 	return data.reduce((a, b) => a + b, 0) / time
 }
+
+/**
+ * Type that represents a program and whether it exists on the home server
+ */
+export type ProgramState = {
+	program: string
+	exists: boolean
+}
+
+/**
+ * Checks if any of the programs passed in now exist on the home server, and updates the exists property of the program
+ * @param ns Global NS object
+ * @param programs The programs to check
+ * @returns true if any of the programs now exist, otherwise false
+ */
+export function checkForNewPrograms(ns: NS, programs: ProgramState[]) {
+	let result = false
+	for (const program of programs) {
+		if (program.exists == false) {
+			program.exists = ns.fileExists(program.program)
+			if (program.exists) {
+				result = true
+			}
+		}
+	}
+	return result
+}
