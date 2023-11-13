@@ -10,7 +10,7 @@ export async function main(ns: NS) {
 		if (Math.min(...levels) <= hackingLevel) {
 			// remove the level from the list, so we don't try to hack it again
 			levels = levels.filter(level => level > hackingLevel)
-			ns.tprint(`Hacking level increased to ${hackingLevel}`)
+			ns.tprint(`Hacking level increased past ${Math.min(...levels)}}, is now ${hackingLevel}`)
 			ns.tprint(`Remaining levels to hack: ${levels}`)
 			ns.run("killall.js")
 			await ns.sleep(1000) // 1 second
