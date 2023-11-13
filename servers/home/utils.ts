@@ -22,8 +22,8 @@ export function recursiveScan(ns: NS) {
 			}
 		}
 	}
-	// Remove the current server
-	return allServers.splice(allServers.indexOf("home"), 1)
+	// Remove the home server from the list
+	return allServers.splice(allServers.indexOf("home"), 1).sort()
 }
 
 /**
@@ -135,7 +135,8 @@ export function executeScriptOnServerFromAnother(ns: NS, server: string, script:
 	ns.scp(script, server)
 	performFunctionIfCapable(ns, server, ns.exec, [script, server, threads, ...args])
 	ns.atExit(() => {
-		ns.rm(script, server)
+		// Remove the script from the server when the program exits
+		// ns.rm(script, server)
 	})
 }
 
