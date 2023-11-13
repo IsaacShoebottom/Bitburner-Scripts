@@ -20,7 +20,7 @@ export async function main(ns: NS) {
 	do {
 		let restart = false
 		if (Math.min(...levels) <= hackingLevel) {
-			ns.tprint(`Hacking level increased past ${Math.min(...levels)}}, is now ${hackingLevel}`)
+			ns.tprint(`Hacking level increased to/past ${Math.min(...levels)}, is now ${hackingLevel}`)
 			ns.tprint(`Remaining levels to hack: ${levels}`)
 			// remove the level from the list, so we don't try to hack it again
 			levels = levels.filter(level => level > hackingLevel)
