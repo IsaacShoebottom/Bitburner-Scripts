@@ -1,4 +1,4 @@
-import { recursiveHackingRequired, recursiveScan } from "./utils"
+import { recursiveHackingRequired, recursiveScan, removeFilesOnAllServers } from "./utils"
 
 export async function main(ns: NS) {
 	switch (ns.args[0]) {
@@ -7,6 +7,9 @@ export async function main(ns: NS) {
 			break
 		case "getHackingLevels":
 			getHackingLevels(ns)
+			break
+		case "removeFiles":
+			removeFilesOnAllServersFromArgs(ns)
 			break
 		default:
 			ns.tprint("Invalid program name")
@@ -20,4 +23,10 @@ function getServers(ns: NS) {
 
 function getHackingLevels(ns: NS) {
 	ns.tprint(recursiveHackingRequired(ns))
+}
+
+function removeFilesOnAllServersFromArgs(ns: NS) {
+	let args = ns.args.slice(1)
+	let files = args.map((file) => file.toString())
+	removeFilesOnAllServers(ns, files)
 }
