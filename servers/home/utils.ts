@@ -76,7 +76,7 @@ export function rootServer(ns: NS, server: string) {
 		ns.ftpcrack(server)
 		counter++
 	}
-	if (ns.fileExists("SMTPCrack.exe", "home")) {
+	if (ns.fileExists("relaySMTP.exe", "home")) {
 		ns.relaysmtp(server)
 		counter++
 	}
